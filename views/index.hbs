@@ -9,10 +9,12 @@
             <p style="text-align: center;"><button onclick="getLocationNow()">Locate me!</button></p>
             <p style="text-align: center; font-size: 18px;" id="position"></p>
             <p style="text-align: center; font-size: 18px;" id="updated"></p>
+            <p style="text-align: center; font-size: 18px;" id="updated-count"></p>
         </div>
         <script>
             const positionElement = document.getElementById("position");
             const updatedElement = document.getElementById("updated");
+            const updatedCount = document.getElementById("updated-count");
             const locationOptions = {maximumAge:0,enableHighAccuracy:true};
             const time = {
                 year: new Date().getFullYear(),
@@ -32,11 +34,14 @@
                 }
             }
             function showPositionNow(position){
+                var cnt = 0;
                 var lat = position.coords.latitude;
                 var lon = position.coords.longitude;
                 var geoTxt = "Your geolocation: <br><br>" + "Latitude: " + lat + "<br>Longitude: " + lon;
                 positionElement.innerHTML = geoTxt;
                 updatedElement.innerHTML = "Updated at: " + time.toStr();
+                updatedCount.innerHTML = "UpdateCount: " + cnt;
+                cnt++;
             }
             function showError(error){
                 console.log(error);
