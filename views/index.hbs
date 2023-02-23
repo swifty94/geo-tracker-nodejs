@@ -8,13 +8,14 @@
             <img style="width:40%;margin-left:30%;" src="../public/img/geolocation.png" alt="App logo">
             <p style="text-align: center;"><button onclick="getLocationNow()">Locate me!</button></p>
             <p style="text-align: center; font-size: 18px;" id="position"></p>
-            <p onchange="updatedCount.innerHTML += 1" style="text-align: center; font-size: 18px;" id="updated"></p>
-            <p>Count:<p style="text-align: center; font-size: 18px;" id="updated-count"><p></p>
+            <p style="text-align: center; font-size: 18px;" id="updated"></p>
+            <p style="text-align: center; font-size: 18px;" id="updated-count"></p>
         </div>
         <script>
             const positionElement = document.getElementById("position");
             const updatedElement = document.getElementById("updated");
-            const updatedCount = document.getElementById("updated-count");
+            const updatedCountElement = document.getElementById("updated-count");
+            let updatedCountInt = 0;
             const locationOptions = {maximumAge:0,enableHighAccuracy:true};
             const time = {
                 year: new Date().getFullYear(),
@@ -30,15 +31,21 @@
             function getLocationNow(){
                 if (navigator.geolocation) {
                     navigator.geolocation.watchPosition(showPositionNow, showError, locationOptions);
-                    console.log("geolocation updated");
                 }
             }
             function showPositionNow(position){
                 var lat = position.coords.latitude;
                 var lon = position.coords.longitude;
-                var geoTxt = "Your geolocation: <br><br>" + "Latitude: " + lat + "<br>Longitude: " + lon;
+                var geoTxt = "Your geolocation: <br>" + "Latitude: " + lat + "<br>Longitude: " + lon;
                 positionElement.innerHTML = geoTxt;
-                updatedElement.innerHTML = "Updated at: " +new Date().toDateString();
+                updatedElement.innerHTML = "UpdateTime: " + time.toStr();
+                updatedCountElement.innerHTML = "UpdateCount: " + updatedCountInt;
+                console.log("UpdatedValue: ", {
+                    coords: [lat, lon],
+                    time: time.toStr(),
+                    count: updatedCountInt
+                })
+                updatedCountInt++;
             }
             function showError(error){
                 console.log(error);
