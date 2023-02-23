@@ -15,9 +15,9 @@
             const positionElement = document.getElementById("position");
             const updatedElement = document.getElementById("updated");
             const updatedCountElement = document.getElementById("updated-count");
-            let updatedCountInt = 0;
+            var updatedCountInt = 0;
             const locationOptions = {maximumAge:0,enableHighAccuracy:true};
-            const time = {
+            var time = {
                 year: new Date().getFullYear(),
                 month: new Date().getMonth(),
                 day: new Date().getDate(),
