@@ -29,19 +29,19 @@
             }
             function getLocationNow(){
                 if (navigator.geolocation) {
+                    cnt = 1;
                     navigator.geolocation.watchPosition(showPositionNow, showError, locationOptions);
                     console.log("geolocation updated");
+                    updatedCount.innerHTML = "UpdateCount: " + cnt;
+                    cnt++;
                 }
             }
             function showPositionNow(position){
-                var cnt = 0;
                 var lat = position.coords.latitude;
                 var lon = position.coords.longitude;
                 var geoTxt = "Your geolocation: <br><br>" + "Latitude: " + lat + "<br>Longitude: " + lon;
                 positionElement.innerHTML = geoTxt;
-                updatedElement.innerHTML = "Updated at: " + time.toStr();
-                updatedCount.innerHTML = "UpdateCount: " + cnt;
-                cnt++;
+                updatedElement.innerHTML = "Updated at: " +new Date();
             }
             function showError(error){
                 console.log(error);
