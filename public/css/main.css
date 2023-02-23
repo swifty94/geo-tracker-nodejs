@@ -1,0 +1,7 @@
+table, th, td , h1, h2, h3{
+    border: 1px solid black;
+    table-layout: fixed;
+    text-align: center;
+    width: 100%;
+    height: 60px;
+  }

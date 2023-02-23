@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" lang="en">
     <header>
+        <link rel="stylesheet" href="../public/css/main.css" type="text/css"/>
     </header>
     <body>
         <h1 style="text-align: center; font-size: 25px;">NodeJS-based GeoTracking Application</h1>
         <div class="main">
             <img style="width:40%;margin-left:30%;" src="../public/img/geolocation.png" alt="App logo">
             <p style="text-align: center;"><button onclick="getLocationNow()">Locate me!</button></p>
-            <p style="text-align: center; font-size: 18px;" id="position"></p>
+            <!--<p style="text-align: center; font-size: 18px;" id="position"></p>
             <p style="text-align: center; font-size: 18px;" id="updated"></p>
-            <p style="text-align: center; font-size: 18px;" id="updated-count"></p>
+            <p style="text-align: center; font-size: 18px;" id="updated-count"></p>-->
+            <table id="position-updates">
+                <thead>
+                    <tr>
+                        <th>ChangeID</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Speed</th>
+                        <th>Accuracy</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <br>
         </div>
         <script src="../public/js/client.js"></script>
     </body>

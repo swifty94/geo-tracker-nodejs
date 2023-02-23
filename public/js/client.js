@@ -1,19 +1,9 @@
 const positionElement = document.getElementById("position");
 const updatedElement = document.getElementById("updated");
 const updatedCountElement = document.getElementById("updated-count");
-var updatedCountInt = 0;
 const locationOptions = {maximumAge:0,enableHighAccuracy:true};
-var time = {
-    year: new Date().getFullYear(),
-    month: new Date().getMonth(),
-    day: new Date().getDate(),
-    hour: new Date().getHours(),
-    minute: new Date().getMinutes(),
-    second: new Date().getSeconds(),
-    toStr: function(){
-        return `${this.year}-${this.month}-${this.day} ${this.hour}:${this.minute}:${this.second}`;
-    }
-};
+let changeIdCount = 0;
+
 function getLocationNow(){
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(showPositionNow, showError, locationOptions);
@@ -22,6 +12,14 @@ function getLocationNow(){
 function showPositionNow(position){
     var lat = position.coords.latitude;
     var lon = position.coords.longitude;
+    var accuracy = position.coords.accuracy;
+    var speed = typeof null ? '0' : position.coords.speed;
+    var timestamp = new Date().toISOString(position.timestamp);
+    var updates = [changeIdCount, lat, lon, speed, accuracy, timestamp]
+    updateTable(updates);
+    changeIdCount++;
+
+    /*
     var geoTxt = "Your geolocation: <br>" + "Latitude: " + lat + "<br>Longitude: " + lon;
     positionElement.innerHTML = geoTxt;
     updatedElement.innerHTML = "UpdateTime: " + time.toStr();
@@ -32,7 +30,20 @@ function showPositionNow(position){
         count: updatedCountInt
     });
     updatedCountInt++;
+    */
 };
 function showError(error){
     console.log(error);
 };
+
+function updateTable(updates) {
+    // Get a reference to the table
+    let tableRef = document.getElementById('position-updates');
+    // Insert a row at the end of the table
+    let newRow = tableRef.insertRow(-1);
+    for (let i = 0; i < tableRef.rows[0].cells.length; i++) {
+        let newCell = newRow.insertCell(i);
+        let newText = document.createTextNode(updates[i]);
+        newCell.appendChild(newText);
+    }
+}
