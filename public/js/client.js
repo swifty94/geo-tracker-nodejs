@@ -20,9 +20,7 @@ function showPositionNow(position){
     var speed = typeof null ? '0' : position.coords.speed;
     var timestamp = new Date().toISOString(position.timestamp);
     var updates = [changeIdCount, lat, lon, speed, accuracy, timestamp]
-    console.log('!!! watchPosition triggered')
-    console.log(updates)
-    //updateTable(updates);
+    updateTable(updates);
     changeIdCount++;
 };
 
