@@ -1,5 +1,8 @@
+/*
+
+TODO: Implement live geo tracking
+
 const tableContainer = document.getElementById('live-table');
-const mapContainer = document.getElementById('static-map');
 const updatedElement = document.getElementById("updated");
 const updatedCountElement = document.getElementById("updated-count");
 const locationOptions = {maximumAge:0,enableHighAccuracy:true};
@@ -25,10 +28,6 @@ function showPositionNow(position){
     changeIdCount++;
 };
 
-function showError(error){
-    console.log(error);
-};
-
 function updateTable(updates) {
     let tableRef = document.getElementById('position-updates');
     let newRow = tableRef.insertRow(-1);
@@ -39,13 +38,23 @@ function updateTable(updates) {
     }
 }
 
+ */
+
+
+const mapContainer = document.getElementById('static-map');
+const locationOptions = {maximumAge:0,enableHighAccuracy:true};
+
 function getLocationNow(){
     mapContainer.style.display = 'block';
-    tableContainer.style.display = 'none';
+    //tableContainer.style.display = 'none';
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(drawGoogleMap, showError, locationOptions);
     };
 }
+
+function showError(error){
+    console.log(error);
+};
 
 function drawGoogleMap(position) {
     var lat = position.coords.latitude;

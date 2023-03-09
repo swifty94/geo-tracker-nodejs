@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" lang="en">
     <header>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="../public/css/main.css" type="text/css"/>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlv4PJVxz3RLAgumifVvM5b_HxyOSccFU&callback=getLocationNow"defer></script>
         <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
         <script type = "text/javascript" src = "https://www.google.com/jsapi"></script>
         <script type = "text/javascript">google.charts.load('current', {packages: ['map']});</script>
@@ -11,9 +13,11 @@
         <div class="main">
             <img id="logo" src="../public/img/geolocation.png" alt="App logo">
             <p><button onclick="getLocationNow()">Show me on map</button></p>
-            <p><button onclick="watchLocationNow()">Track my location</button></p>
             <div id="static-map">
             </div>
+
+            <!-- TODO: tracing location
+            <p><button onclick="watchLocationNow()">Track my location</button></p>
             <div id="live-table">
             <table id="position-updates">
                 <thead>
@@ -31,6 +35,8 @@
             </table>
             </div>
             <br>
+            -->
+
         </div>
         <script src="../public/js/client.js"></script>
     </body>

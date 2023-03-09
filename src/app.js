@@ -1,6 +1,5 @@
 const path = require('path');
 const express = require('express');
-const os = require('os');
 const publicFolder = path.join(__dirname, '../public');
 const appPort = process.env.PORT || 3000
 
@@ -32,7 +31,7 @@ const time = {
 
 app.listen(appPort, () => {
     console.log('----------------------------------------------------------------');
-    console.log(`--------------- Express web-server started ---------------------`);
+    console.log(`--------------- Secure Express web-server started ---------------------`);
     console.log(`--------------- Start time:`, time.toStr(), '--------------');
     console.log('----------------------------------------------------------------');
     console.log(`Possible URL to try: http://127.0.0.1:${appPort}`)

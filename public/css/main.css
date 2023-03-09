@@ -1,6 +1,9 @@
 body{
   background-color: #88ceda;
 }
+.main {
+  width: 100%;
+}
 #title {
   text-align: center;
   font-size: 25px;
@@ -16,8 +19,7 @@ p {
 
 #static-map {
   display:none;
-  width: 700px;
-  height: 500px;
+  width: 100%;
   margin: 0 auto
 }
 #live-table {
