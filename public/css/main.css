@@ -1,5 +1,30 @@
-table, th, td , h1, h2, h3{
-    border: 1px solid black;
+body{
+  background-color: #88ceda;
+}
+#title {
+  text-align: center;
+  font-size: 25px;
+}
+
+#logo {
+  width:40%;
+  margin-left:30%;
+}
+p {
+  text-align: center;
+}
+
+#static-map {
+  display:none;
+  width: 600px;
+  height: 400px;
+  margin: 0 auto
+}
+#live-table {
+  display: none;
+}
+table, th, td {
+    border: 0.5px solid black;
     table-layout: fixed;
     text-align: center;
     width: 100%;

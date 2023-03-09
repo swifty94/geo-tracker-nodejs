@@ -1,14 +1,18 @@
-const positionElement = document.getElementById("position");
+const tableContainer = document.getElementById('live-table');
+const mapContainer = document.getElementById('static-map');
 const updatedElement = document.getElementById("updated");
 const updatedCountElement = document.getElementById("updated-count");
 const locationOptions = {maximumAge:0,enableHighAccuracy:true};
 let changeIdCount = 0;
 
-function getLocationNow(){
+function watchLocationNow(){
+    mapContainer.style.display = "none";
+    tableContainer.style.display = "block";
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(showPositionNow, showError, locationOptions);
     };
 };
+
 function showPositionNow(position){
     var lat = position.coords.latitude;
     var lon = position.coords.longitude;
@@ -16,34 +20,42 @@ function showPositionNow(position){
     var speed = typeof null ? '0' : position.coords.speed;
     var timestamp = new Date().toISOString(position.timestamp);
     var updates = [changeIdCount, lat, lon, speed, accuracy, timestamp]
-    updateTable(updates);
+    console.log('!!! watchPosition triggered')
+    console.log(updates)
+    //updateTable(updates);
     changeIdCount++;
-
-    /*
-    var geoTxt = "Your geolocation: <br>" + "Latitude: " + lat + "<br>Longitude: " + lon;
-    positionElement.innerHTML = geoTxt;
-    updatedElement.innerHTML = "UpdateTime: " + time.toStr();
-    updatedCountElement.innerHTML = "UpdateCount: " + updatedCountInt;
-    console.log("UpdatedValue: ", {
-        coords: [lat, lon],
-        time: time.toStr(),
-        count: updatedCountInt
-    });
-    updatedCountInt++;
-    */
 };
+
 function showError(error){
     console.log(error);
 };
 
 function updateTable(updates) {
-    // Get a reference to the table
     let tableRef = document.getElementById('position-updates');
-    // Insert a row at the end of the table
     let newRow = tableRef.insertRow(-1);
     for (let i = 0; i < tableRef.rows[0].cells.length; i++) {
         let newCell = newRow.insertCell(i);
         let newText = document.createTextNode(updates[i]);
         newCell.appendChild(newText);
     }
+}
+
+function getLocationNow(){
+    mapContainer.style.display = 'block';
+    tableContainer.style.display = 'none';
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(drawGoogleMap, showError, locationOptions);
+    };
+}
+
+function drawGoogleMap(position) {
+    var lat = position.coords.latitude;
+    var lon = position.coords.longitude;
+    var data = google.visualization.arrayToDataTable([
+    ['Lat', 'Long'],
+    [lat, lon]
+    ]);
+    var options = {showTip: true};
+    var chart = new google.visualization.Map(mapContainer);
+    chart.draw(data, options);
 }

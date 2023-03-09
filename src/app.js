@@ -1,9 +1,8 @@
-const settings = require('../utils/settings');
 const path = require('path');
 const express = require('express');
 const os = require('os');
 const publicFolder = path.join(__dirname, '../public');
-const appPort = settings.appPort
+const appPort = process.env.PORT || 3000
 
 const app = express();
 

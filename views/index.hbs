@@ -2,15 +2,19 @@
 <html lang="en" lang="en">
     <header>
         <link rel="stylesheet" href="../public/css/main.css" type="text/css"/>
+        <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
+        <script type = "text/javascript" src = "https://www.google.com/jsapi"></script>
+        <script type = "text/javascript">google.charts.load('current', {packages: ['map']});</script>
     </header>
     <body>
-        <h1 style="text-align: center; font-size: 25px;">NodeJS-based GeoTracking Application</h1>
+        <h1 id="title">NodeJS-based GeoTracking Application</h1>
         <div class="main">
-            <img style="width:40%;margin-left:30%;" src="../public/img/geolocation.png" alt="App logo">
-            <p style="text-align: center;"><button onclick="getLocationNow()">Locate me!</button></p>
-            <!--<p style="text-align: center; font-size: 18px;" id="position"></p>
-            <p style="text-align: center; font-size: 18px;" id="updated"></p>
-            <p style="text-align: center; font-size: 18px;" id="updated-count"></p>-->
+            <img id="logo" src="../public/img/geolocation.png" alt="App logo">
+            <p><button onclick="getLocationNow()">Show me on map</button></p>
+            <p><button onclick="watchLocationNow()">Watch my location me!</button></p>
+            <div id="static-map">
+            </div>
+            <div id="live-table">
             <table id="position-updates">
                 <thead>
                     <tr>
@@ -25,12 +29,13 @@
                 <tbody>
                 </tbody>
             </table>
+            </div>
             <br>
         </div>
         <script src="../public/js/client.js"></script>
     </body>
     <footer>
-      <p style="text-align: center;">Created by &copy; swifty94</p>
+      <p>Created by &copy; swifty94</p>
       <h3 style="text-align: center;"><a href="https://github.com/swifty94/geo-tracker-nodejs">GitHub</a></h3>
     </footer>
 </html>
