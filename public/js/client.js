@@ -3,7 +3,8 @@ const mapContainer = document.getElementById('static-map');
 const updatedElement = document.getElementById("updated");
 const updatedCountElement = document.getElementById("updated-count");
 const locationOptions = {maximumAge:0,enableHighAccuracy:true};
-let changeIdCount = 0;
+var changeIdCount = 0;
+
 
 function watchLocationNow(){
     mapContainer.style.display = "none";
@@ -19,7 +20,7 @@ function showPositionNow(position){
     var accuracy = position.coords.accuracy;
     var speed = typeof null ? '0' : position.coords.speed;
     var timestamp = new Date().toISOString(position.timestamp);
-    var updates = [changeIdCount, lat, lon, speed, accuracy, timestamp]
+    var updates = [changeIdCount, lat, lon, speed, accuracy, timestamp];
     updateTable(updates);
     changeIdCount++;
 };
